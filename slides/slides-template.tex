@@ -1,0 +1,58 @@
+% =====================================================================
+%  SLIDES  --  beamer + Metropolis theme
+%  Build:  latexmk -cd slides/slides-template.tex   (or the VSCode green arrow)
+%  Compiles with pdfLaTeX. (Metropolis looks best with LuaLaTeX + Fira fonts,
+%  but works fine here with the default fonts.)
+% =====================================================================
+\documentclass[11pt,aspectratio=169]{beamer}
+\usetheme{metropolis}
+\metroset{block=fill}
+
+\usepackage{mathmacros}
+\usepackage{econ}
+% NOTE: beamer has its own theorem/definition blocks, so we do NOT load theorems.sty.
+\usepackage{meconbib}
+\bibresource{references}
+
+\title{Presentation Title}
+\subtitle{A Short Subtitle}
+\author{Gavin Qu}
+\institute{Department of Economics}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{frame}{Outline}
+  \tableofcontents
+\end{frame}
+
+\section{Motivation}
+
+\begin{frame}{The macros work on slides too}
+  \begin{itemize}
+    \item Reals \(\R\), expectation \(\E[X]\), argmax \(\argmax_{x} u(x)\).
+    \item A best response to others' play: \(\BR(s_{\negi})\).
+    \item Citations work: adverse selection \parencite{akerlof1970}.
+  \end{itemize}
+\end{frame}
+
+\section{A result}
+
+\begin{frame}{Existence}
+  \begin{theorem}[Existence of equilibrium]
+    Under standard assumptions, a Nash equilibrium exists.
+  \end{theorem}
+  \begin{block}{Proof idea}
+    Apply Kakutani's fixed-point theorem to the best-response correspondence
+    \(s \mapsto \BR(s)\).
+  \end{block}
+\end{frame}
+
+\appendix
+\begin{frame}[allowframebreaks]{References}
+  \printrefs
+\end{frame}
+
+\end{document}
