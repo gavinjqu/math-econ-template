@@ -1,0 +1,28 @@
+% Shared content for Problem Set 1.
+% \input by BOTH hw01.tex (assignment) and hw01-solutions.tex (answer key).
+% Do NOT compile this file directly.
+
+\begin{problem}[Concavity and upper contour sets]
+Let \(u : \R^{n} \to \R\). Show that if \(u\) is concave, then every upper contour set
+\(\setb{x \in \R^{n} \given u(x) \ge c}\) is convex.
+\end{problem}
+
+\begin{solution}
+Take \(x,y\) with \(u(x) \ge c\) and \(u(y) \ge c\), and \(\lambda \in [0,1]\).
+By concavity,
+\[
+  u(\lambda x + (1-\lambda) y) \;\ge\; \lambda u(x) + (1-\lambda) u(y) \;\ge\; c ,
+\]
+so \(\lambda x + (1-\lambda) y\) is in the set. Hence it is convex.
+\end{solution}
+
+\begin{problem}[A quadratic firm problem]
+Fix a price \(p > 0\). Compute
+\(\displaystyle x\eqm \in \argmax_{x \ge 0}\ \Big\{ p x - \tfrac{1}{2} x^2 \Big\}\)
+and the resulting value function \(V(p)\).
+\end{problem}
+
+\begin{solution}
+The objective is strictly concave; the first-order condition \(p - x = 0\) gives
+\(x\eqm = p\). Therefore \(V(p) = p\cdot p - \tfrac12 p^2 = \tfrac12 p^2\).
+\end{solution}
