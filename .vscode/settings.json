@@ -1,0 +1,39 @@
+{
+  // ===================================================================
+  //  This project compiles with the full MacTeX 2026 distribution,
+  //  NOT TinyTeX (which is minimal and missing packages).
+  //    - PATH puts /Library/TeX/texbin first  -> pdflatex/biber = 2026
+  //    - TEXINPUTS exposes styles/ from any subfolder
+  //  %WORKSPACE_FOLDER% is expanded by LaTeX Workshop at build time.
+  // ===================================================================
+  "latex-workshop.latex.tools": [
+    {
+      "name": "latexmk",
+      "command": "latexmk",
+      "args": [
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "-pdf",
+        "%DOC%"
+      ],
+      "env": {
+        "PATH": "/Library/TeX/texbin:/usr/local/bin:/usr/bin:/bin",
+        "TEXINPUTS": "%WORKSPACE_FOLDER%/styles//:"
+      }
+    }
+  ],
+  "latex-workshop.latex.recipes": [
+    { "name": "latexmk (pdflatex + biber)", "tools": ["latexmk"] }
+  ],
+  "latex-workshop.latex.recipe.default": "first",
+
+  // Build when you save; view the PDF in a VSCode tab.
+  "latex-workshop.latex.autoBuild.run": "onSave",
+  "latex-workshop.view.pdf.viewer": "tab",
+
+  // Tidy up aux files on failed builds; don't nag about overfull boxes.
+  "latex-workshop.latex.autoClean.run": "onFailed",
+  "latex-workshop.latex.clean.method": "cleanAuxFiles",
+  "latex-workshop.message.badbox.show": false
+}
