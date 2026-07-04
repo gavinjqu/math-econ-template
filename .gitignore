@@ -1,0 +1,41 @@
+# === LaTeX build artifacts ===
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.synctex(busy)
+
+# Bibliography (biblatex/biber + bibtex)
+*.bbl
+*.bcf
+*.blg
+*.run.xml
+*-blx.aux
+*-blx.bib
+
+# Beamer
+*.nav
+*.snm
+*.vrb
+
+# Indexing / misc
+*.idx
+*.ind
+*.ilg
+*.glo
+*.gls
+*.acn
+*.acr
+*.alg
+
+# Output PDFs (comment this out if you want to commit compiled PDFs)
+*.pdf
+
+# macOS / editors
+.DS_Store
+*~
