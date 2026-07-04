@@ -1,0 +1,62 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{homework}[2026/07/04 v1.0 Homework problems + toggleable solutions]
+
+% =====================================================================
+%  homework.sty  --  problem/solution scaffolding for problem sets.
+%
+%  Solutions live inside \begin{solution}...\end{solution} in a shared
+%  "content" file.  Two thin wrapper files decide whether they print:
+%    - the assignment wrapper leaves solutions hidden (default)
+%    - the answer-key wrapper calls \showsolutions
+%  => one source of truth, two separate PDFs.
+% =====================================================================
+
+\RequirePackage{etoolbox}
+\RequirePackage{enumitem}
+\RequirePackage{comment}   % robustly gobbles hidden solutions
+
+% ---- Solution visibility (hidden by default; wrapper flips it) ----
+\newif\ifshowsolutions
+\showsolutionsfalse
+\newcommand{\showsolutions}{\showsolutionstrue}
+\newcommand{\hidesolutions}{\showsolutionsfalse}
+
+% ---- Assignment metadata ----
+\def\hw@course{}\def\hw@number{}\def\hw@student{}\def\hw@due{}
+\newcommand{\course}[1]{\def\hw@course{#1}}
+\newcommand{\hwnumber}[1]{\def\hw@number{#1}}
+\newcommand{\hwstudent}[1]{\def\hw@student{#1}}
+\newcommand{\hwdue}[1]{\def\hw@due{#1}}
+
+\newcommand{\makehwheader}{%
+  \begin{center}%
+    {\large\bfseries \hw@course\ -- Problem Set \hw@number}%
+    \ifshowsolutions\ {\normalfont\itshape(Solutions)}\fi\par
+    \smallskip
+    \ifdefempty{\hw@student}{}{\hw@student\hf/}%
+    \ifdefempty{\hw@due}{}{\quad Due: \hw@due}%
+  \end{center}%
+  \vspace{0.75em}%
+}
+
+% ---- Problem environment: auto-numbered, optional short title ----
+\newcounter{hwproblem}
+\newenvironment{problem}[1][]{%
+  \medskip\par\refstepcounter{hwproblem}%
+  \noindent\textbf{Problem \thehwproblem}%
+  \ifstrempty{#1}{}{ \textbf{(#1)}}\textbf{.}\ %
+}{\par\medskip}
+
+% ---- Solution environment: shown only when \showsolutions is set ----
+% Decided at \begin{document}, after the wrapper has set the toggle.
+\AtBeginDocument{%
+  \ifshowsolutions
+    \specialcomment{solution}%
+      {\par\smallskip\noindent\textit{Solution.}\ \begingroup}%
+      {\endgroup\par\smallskip}%
+  \else
+    \excludecomment{solution}%
+  \fi
+}
+
+\endinput

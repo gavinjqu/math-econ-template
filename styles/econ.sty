@@ -1,0 +1,38 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{econ}[2026/07/04 v1.0 Economics-specific macros]
+
+% =====================================================================
+%  econ.sty  --  notation for micro / theory / game theory / metrics
+%  Builds on mathmacros.sty.  Treat these as a starting point and edit
+%  freely for your course's conventions.
+% =====================================================================
+
+\RequirePackage{mathmacros}
+
+% ---- Preference relations ----
+\newcommand{\pref}{\succsim}     % weakly preferred to
+\newcommand{\prefeq}{\sim}       % indifferent to
+\newcommand{\prefstr}{\succ}     % strictly preferred to
+\newcommand{\dpref}{\precsim}    % weakly dispreferred
+\newcommand{\dprefstr}{\prec}    % strictly dispreferred
+
+% ---- Optimization ----
+\newcommand{\Lag}{\mathcal{L}}                  % Lagrangian
+\DeclareMathOperator*{\maximize}{maximize}
+\DeclareMathOperator*{\minimize}{minimize}
+
+% ---- Game theory / equilibrium ----
+\DeclareMathOperator{\BR}{BR}                   % best response
+\newcommand{\eqm}{^{*}}                         % equilibrium star:  x\eqm
+\newcommand{\simplex}[1]{\Delta(#1)}            % mixed strategies over a set
+\newcommand{\negi}{{-i}}                         % "everyone but i":  s_{\negi}
+
+% ---- Marginal quantities ----
+\DeclareMathOperator{\MRS}{MRS}
+\DeclareMathOperator{\MRT}{MRT}
+\DeclareMathOperator{\MU}{MU}
+\DeclareMathOperator{\MC}{MC}
+\DeclareMathOperator{\MB}{MB}
+\DeclareMathOperator{\MR}{MR}
+
+\endinput

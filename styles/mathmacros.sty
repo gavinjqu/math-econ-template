@@ -1,0 +1,104 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{mathmacros}[2026/07/04 v1.0 Core math macros for math + economics notes]
+
+% =====================================================================
+%  mathmacros.sty  --  general-purpose math notation
+%  Loaded by mathprelude.sty; can also be used on its own.
+% =====================================================================
+
+% ---- Core math packages ----
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+\RequirePackage{mathtools}   % extends amsmath: \DeclarePairedDelimiter, \coloneqq, \xrightarrow
+\RequirePackage{bm}          % \bm{...} for bold math
+
+% ---- Number sets (blackboard bold) ----
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\Rn}{\mathbb{R}^{n}}
+\newcommand{\Rplus}{\mathbb{R}_{+}}     % nonnegative reals
+\newcommand{\Rpp}{\mathbb{R}_{++}}      % strictly positive reals
+
+% ---- Paired delimiters (auto-scaling with the star form) ----
+% Usage:  \abs{x}  fixed size   |   \abs*{x}  auto-sized to content
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter{\inner}{\langle}{\rangle}
+\DeclarePairedDelimiter{\parens}{(}{)}
+\DeclarePairedDelimiter{\bracks}{[}{]}
+\DeclarePairedDelimiter{\set}{\lbrace}{\rbrace}
+
+% Set-builder with a middle bar that scales:  \setb{x \in \R \given x > 0}
+\providecommand\given{}
+\DeclarePairedDelimiterX\setb[1]{\lbrace}{\rbrace}{%
+  \renewcommand\given{\nonscript\,\delimsize\vert\nonscript\,}#1}
+
+% ---- Operators ----
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\esssup}{ess\,sup}
+\DeclareMathOperator*{\essinf}{ess\,inf}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\ran}{ran}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\spann}{span}
+\DeclareMathOperator{\conv}{conv}
+\DeclareMathOperator{\aff}{aff}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\proj}{proj}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\intr}{int}        % interior (int is the integral sign)
+\DeclareMathOperator{\relint}{ri}
+
+% ---- Probability & statistics ----
+\newcommand{\E}{\mathbb{E}}             % expectation:  \E[X],  \E_{\theta}[X]
+\newcommand{\Prob}{\mathbb{P}}          % probability:  \Prob(A)
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\Corr}{Corr}
+\DeclareMathOperator{\plim}{plim}
+\newcommand{\Ind}{\mathbf{1}}           % indicator:  \Ind\{x > 0\}
+\newcommand{\Normal}{\mathcal{N}}
+\DeclareMathOperator{\Unif}{Unif}
+\newcommand{\indep}{\perp\!\!\!\perp}                 % independence:  X \indep Y
+\newcommand{\iid}{\overset{\text{iid}}{\sim}}         % X_i \iid \Normal(0,1)
+
+% ---- Modes of convergence (econometrics) ----
+\newcommand{\dto}{\xrightarrow{d}}      % in distribution
+\newcommand{\pto}{\xrightarrow{p}}      % in probability
+\newcommand{\asto}{\xrightarrow{\text{a.s.}}}  % almost surely
+
+% ---- Derivatives & differentials ----
+\newcommand{\dd}{\mathop{}\!\mathrm{d}} % upright d:  \int f(x)\,\dd x
+\newcommand{\dv}[2]{\frac{\dd #1}{\dd #2}}
+\newcommand{\pdv}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\grad}{\nabla}
+
+% ---- Vectors, matrices, transpose ----
+\newcommand{\vect}[1]{\bm{#1}}
+\newcommand{\mat}[1]{\bm{#1}}
+\newcommand{\T}{^{\mathsf{T}}}          % transpose:  A\T
+\newcommand{\inv}{^{-1}}                % inverse:    A\inv
+
+% ---- Handy shorthands ----
+\newcommand{\eps}{\varepsilon}
+\newcommand{\ph}{\varphi}
+\newcommand{\ol}{\overline}
+\newcommand{\ul}{\underline}
+\newcommand{\wt}{\widetilde}
+\newcommand{\wh}{\widehat}
+\newcommand{\defeq}{\coloneqq}          % :=
+\newcommand{\st}{\;\text{s.t.}\;}       % such that / subject to (inline)
+\newcommand{\then}{\implies}
+
+\endinput

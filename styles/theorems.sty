@@ -1,0 +1,63 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{theorems}[2026/07/04 v1.0 Theorem environments for math + economics]
+
+% =====================================================================
+%  theorems.sty  --  amsthm-based theorem environments
+%  - theorem/lemma/proposition/corollary/claim share one counter,
+%    numbered within the section (e.g. Theorem 2.3).
+%  - assumptions get their own counter (Assumption 1, 2, ...), the
+%    usual economics convention.
+%  - If cleveref is loaded, \cref names are registered automatically.
+% =====================================================================
+
+\RequirePackage{amsthm}
+\RequirePackage{etoolbox}
+
+% ---- Results: italic body ----
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{fact}[theorem]{Fact}
+
+% ---- Definitions & examples: upright body ----
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+
+% ---- Assumptions: own counter (econ convention) ----
+\newtheorem{assumption}{Assumption}
+\renewcommand{\theassumption}{\arabic{assumption}}
+
+% ---- Remarks & notes: italic head, upright body ----
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{note}[theorem]{Note}
+\newtheorem*{notation}{Notation}
+
+% ---- cleveref names (only if cleveref is loaded; deferred so order is safe) ----
+\AtEndPreamble{%
+  \@ifpackageloaded{cleveref}{%
+    \crefname{theorem}{Theorem}{Theorems}%
+    \Crefname{theorem}{Theorem}{Theorems}%
+    \crefname{lemma}{Lemma}{Lemmas}%
+    \Crefname{lemma}{Lemma}{Lemmas}%
+    \crefname{proposition}{Proposition}{Propositions}%
+    \Crefname{proposition}{Proposition}{Propositions}%
+    \crefname{corollary}{Corollary}{Corollaries}%
+    \Crefname{corollary}{Corollary}{Corollaries}%
+    \crefname{claim}{Claim}{Claims}%
+    \crefname{definition}{Definition}{Definitions}%
+    \Crefname{definition}{Definition}{Definitions}%
+    \crefname{assumption}{Assumption}{Assumptions}%
+    \Crefname{assumption}{Assumption}{Assumptions}%
+    \crefname{example}{Example}{Examples}%
+    \crefname{remark}{Remark}{Remarks}%
+  }{}%
+}
+
+\endinput

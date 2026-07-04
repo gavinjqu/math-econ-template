@@ -1,0 +1,49 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{meconbib}[2026/07/04 v1.0 Unified bibliography toggle]
+
+% =====================================================================
+%  meconbib.sty  --  switch between biblatex (default) and natbib
+%
+%    \usepackage{meconbib}            % biblatex + biber  (modern default)
+%    \usepackage[natbib]{meconbib}    % natbib + bibtex   (older journals)
+%
+%  Either way, in your document you use the SAME commands:
+%    \bibresource{references}   % your .bib file, WITHOUT the .bib extension
+%    \citet{key}  \citep{key}   % author-year, textual / parenthetical
+%    \textcite{key} \parencite{key}   % biblatex-style aliases also work
+%    \printrefs                 % prints the bibliography
+%
+%  Under [natbib] you can pick a journal style, e.g.
+%    \setbibstyle{aer}          % (put aer.bst on your path first)
+% =====================================================================
+
+\newif\ifmecon@natbib \mecon@natbibfalse
+\DeclareOption{biblatex}{\mecon@natbibfalse}
+\DeclareOption{natbib}{\mecon@natbibtrue}
+\DeclareOption*{\PackageWarning{meconbib}{Unknown option '\CurrentOption'}}
+\ProcessOptions\relax
+
+\ifmecon@natbib
+  %===================== natbib + bibtex =====================
+  \RequirePackage[authoryear,round]{natbib}
+  \def\mecon@bib{references}
+  \def\mecon@bst{plainnat}
+  \newcommand{\bibresource}[1]{\def\mecon@bib{#1}}
+  \newcommand{\setbibstyle}[1]{\def\mecon@bst{#1}}
+  % biblatex-style aliases so documents are portable across the toggle
+  \providecommand{\parencite}{\citep}
+  \providecommand{\textcite}{\citet}
+  \providecommand{\autocite}{\citep}
+  \newcommand{\printrefs}{\bibliographystyle{\mecon@bst}\bibliography{\mecon@bib}}
+\else
+  %===================== biblatex + biber ====================
+  \RequirePackage{csquotes}
+  \RequirePackage[style=authoryear,backend=biber,natbib=true,%
+                  maxbibnames=99,giveninits=true,%
+                  uniquename=false,uniquelist=false]{biblatex}
+  \newcommand{\bibresource}[1]{\addbibresource{#1.bib}}
+  \newcommand{\setbibstyle}[1]{}% no-op (style is set via package options above)
+  \newcommand{\printrefs}{\printbibliography}
+\fi
+
+\endinput

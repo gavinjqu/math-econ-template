@@ -1,0 +1,35 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{mathprelude}[2026/07/04 v1.0 Common preamble for notes/papers/homework]
+
+% =====================================================================
+%  mathprelude.sty  --  one-line preamble for article-based documents.
+%  Loads sensible packages + all the shared macro packages, so a
+%  document only needs:   \usepackage{mathprelude}
+%  (Do NOT use this with beamer or the exam class; they manage layout
+%   themselves -- load mathmacros/econ/theorems directly there.)
+% =====================================================================
+
+\RequirePackage{etoolbox}
+
+% Load cleveref LAST -- after hyperref AND after any biblatex the document
+% adds -- by deferring it to the end of the preamble.  Registered here,
+% before theorems.sty, so it runs before theorems' \crefname hook.
+\AtEndPreamble{\RequirePackage[nameinlink]{cleveref}}
+
+\RequirePackage[margin=1in]{geometry}
+\RequirePackage{microtype}
+\RequirePackage{graphicx}
+\RequirePackage{booktabs}
+\RequirePackage{enumitem}
+\RequirePackage[dvipsnames,table]{xcolor}
+
+\RequirePackage{mathmacros}
+\RequirePackage{theorems}
+\RequirePackage{econ}
+
+\definecolor{LinkNavy}{HTML}{1A5276}
+\definecolor{CiteGreen}{HTML}{1E7145}
+\RequirePackage[colorlinks=true,linkcolor=LinkNavy,citecolor=CiteGreen,%
+                urlcolor=LinkNavy,breaklinks=true]{hyperref}
+
+\endinput
