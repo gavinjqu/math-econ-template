@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{homework}[2026/07/04 v1.0 Homework problems + toggleable solutions]
+\ProvidesPackage{homework}[2026/07/04 v1.1 Homework problems + toggleable solutions]
 
 % =====================================================================
 %  homework.sty  --  problem/solution scaffolding for problem sets.
@@ -13,7 +13,7 @@
 
 \RequirePackage{etoolbox}
 \RequirePackage{enumitem}
-\RequirePackage{comment}   % robustly gobbles hidden solutions
+\RequirePackage{environ}   % robust body capture for the solution toggle
 
 % ---- Solution visibility (hidden by default; wrapper flips it) ----
 \newif\ifshowsolutions
@@ -30,11 +30,10 @@
 
 \newcommand{\makehwheader}{%
   \begin{center}%
-    {\large\bfseries \hw@course\ -- Problem Set \hw@number}%
-    \ifshowsolutions\ {\normalfont\itshape(Solutions)}\fi\par
-    \smallskip
-    \ifdefempty{\hw@student}{}{\hw@student\hf/}%
-    \ifdefempty{\hw@due}{}{\quad Due: \hw@due}%
+    {\large\bfseries \hw@course}\\[2pt]%
+    {\bfseries Problem Set \hw@number\ifshowsolutions\ --- Solutions\fi}%
+    \ifdefempty{\hw@student}{}{\\[2pt]\hw@student}%
+    \ifdefempty{\hw@due}{}{\quad(Due: \hw@due)}%
   \end{center}%
   \vspace{0.75em}%
 }
@@ -47,15 +46,13 @@
   \ifstrempty{#1}{}{ \textbf{(#1)}}\textbf{.}\ %
 }{\par\medskip}
 
-% ---- Solution environment: shown only when \showsolutions is set ----
-% Decided at \begin{document}, after the wrapper has set the toggle.
-\AtBeginDocument{%
+% ---- Solution environment: typeset only when \showsolutions is set. ----
+% environ captures the body as \BODY; when solutions are hidden we never
+% emit \BODY, so its content is discarded (and never executed). Unlike the
+% comment package, this imposes no line-break rules on \begin/\end.
+\NewEnviron{solution}{%
   \ifshowsolutions
-    \specialcomment{solution}%
-      {\par\smallskip\noindent\textit{Solution.}\ \begingroup}%
-      {\endgroup\par\smallskip}%
-  \else
-    \excludecomment{solution}%
+    \par\smallskip\noindent\textit{Solution.}\ \BODY\par\smallskip
   \fi
 }
 
