@@ -1,0 +1,31 @@
+% =====================================================================
+%  FINAL EXAM -- ANSWER KEY (solutions shown)
+%  Build:  latexmk -cd exam/final-solutions.tex
+%  Identical to final.tex except for \printanswers below.
+% =====================================================================
+\documentclass[11pt,addpoints,answers]{exam}
+
+\usepackage{mathmacros}
+\usepackage{econ}
+\usepackage{theorems}
+
+\printanswers   % <-- the ONLY difference: reveal the solution environments
+
+\pagestyle{headandfoot}
+\header{Econ 501 --- Final (Solutions)}{}{}
+\footer{}{Page \thepage\ of \numpages}{}
+\runningheadrule
+\pointsinrightmargin
+\bracketedpoints
+
+\begin{document}
+
+\begin{center}
+  {\large\bfseries Econ 501: Final Examination --- Solutions}\\[2pt]
+  \today \qquad Total: \numpoints\ points
+\end{center}
+\vspace{1em}
+
+\input{final-content}
+
+\end{document}

@@ -1,0 +1,34 @@
+% =====================================================================
+%  FINAL EXAM -- BLANK (no solutions)
+%  Build:  latexmk -cd exam/final.tex
+%  Uses the `exam` document class (points, grading table, page x of N).
+% =====================================================================
+\documentclass[11pt,addpoints]{exam}
+
+\usepackage{mathmacros}
+\usepackage{econ}
+\usepackage{theorems}
+
+% --- running header/footer ---
+\pagestyle{headandfoot}
+\header{Econ 501 --- Final}{}{Name: \makebox[2in]{\hrulefill}}
+\footer{}{Page \thepage\ of \numpages}{}
+\runningheadrule
+\pointsinrightmargin
+\bracketedpoints
+
+\begin{document}
+
+\begin{center}
+  {\large\bfseries Econ 501: Final Examination}\\[2pt]
+  \today \qquad Total: \numpoints\ points
+\end{center}
+\vspace{1em}
+
+% Grading table (all questions):
+\gradetable[h][questions]
+\vspace{1em}
+
+\input{final-content}
+
+\end{document}

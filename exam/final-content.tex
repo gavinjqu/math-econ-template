@@ -1,0 +1,33 @@
+% Shared content for the Final Exam.
+% \input by BOTH final.tex (blank) and final-solutions.tex (answer key).
+% Do NOT compile this file directly.
+%
+% The exam class hides \begin{solution}...\end{solution} unless the wrapper
+% file calls \printanswers.
+
+\begin{questions}
+
+\question[10]
+State and prove that a strictly concave function \(f:\R\to\R\) has at most one
+maximizer.
+\begin{solution}
+Suppose \(x \ne y\) both maximize \(f\), so \(f(x) = f(y) = \max f\). Strict
+concavity gives \(f\!\left(\tfrac{x+y}{2}\right) > \tfrac12 f(x) + \tfrac12 f(y)
+= \max f\), a contradiction. Hence the maximizer is unique.
+\end{solution}
+
+\question[15]
+A consumer has utility \(u(x_1,x_2) = x_1^{\alpha} x_2^{1-\alpha}\) with
+\(\alpha \in (0,1)\), income \(m\), and prices \(p_1,p_2\).
+\begin{parts}
+  \part[6] Derive the Marshallian demands \(x_1(p,m)\) and \(x_2(p,m)\).
+  \part[5] Compute the indirect utility function \(v(p,m)\).
+  \part[4] Verify Roy's identity for good~1.
+\end{parts}
+\begin{solution}
+Cobb--Douglas shares: \(x_1 = \dfrac{\alpha m}{p_1}\), \(x_2 = \dfrac{(1-\alpha)m}{p_2}\).
+Then \(v(p,m) = \left(\tfrac{\alpha}{p_1}\right)^{\alpha}
+\left(\tfrac{1-\alpha}{p_2}\right)^{1-\alpha} m\), and Roy's identity returns \(x_1\).
+\end{solution}
+
+\end{questions}
