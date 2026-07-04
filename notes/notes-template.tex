@@ -1,0 +1,53 @@
+% =====================================================================
+%  LECTURE / STUDY NOTES  --  article + biblatex
+%  Build in VSCode with the green arrow, or:  latexmk -cd notes/notes-template.tex
+% =====================================================================
+\documentclass[11pt]{article}
+
+\usepackage{mathprelude}   % geometry, all math/econ macros, theorems, hyperref, cleveref
+\usepackage{meconbib}      % biblatex + biber (default). Older journals: \usepackage[natbib]{meconbib}
+\bibresource{references}   % -> references.bib in this folder
+
+\title{Lecture Notes: A Topic in Microeconomic Theory}
+\author{Gavin Qu}
+\date{\today}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\bigskip
+
+\section{Introduction}
+These notes show off the shared macros. The reals are \(\R\), an expectation is
+\(\E[X]\), and a maximizer is \(\displaystyle x\eqm \in \argmax_{x \in \R} f(x)\).
+The classic reference on asymmetric information is \textcite{akerlof1970}.
+
+\section{Definitions and results}
+
+\begin{definition}[Convex set]\label{def:convex}
+A set \(C \subseteq \R^{n}\) is \emph{convex} if
+\(\lambda x + (1-\lambda) y \in C\) for all \(x,y \in C\) and \(\lambda \in [0,1]\).
+\end{definition}
+
+\begin{assumption}\label{as:concave}
+The function \(\ph : \R^{n} \to \R\) is concave and integrable.
+\end{assumption}
+
+\begin{theorem}[Jensen's inequality]\label{thm:jensen}
+Under \Cref{as:concave}, \(\;\ph(\E[X]) \ge \E[\ph(X)]\) for any integrable \(X\).
+\end{theorem}
+
+\begin{proof}
+Let \(L\) be a supporting line of \(\ph\) at \(\E[X]\). Concavity gives
+\(\ph(x) \le L(x)\), so \(\E[\ph(X)] \le \E[L(X)] = L(\E[X]) = \ph(\E[X])\).
+\end{proof}
+
+By \Cref{thm:jensen}, the variance \(\Var(X) = \E[X^2] - (\E X)^2 \ge 0\).
+
+\begin{remark}
+Set-builder notation with a scaling bar: the upper contour set is
+\(\setb{x \in \R^{n} \given \ph(x) \ge c}\), which is convex by \Cref{def:convex}.
+\end{remark}
+
+\printrefs
+\end{document}
