@@ -1,0 +1,70 @@
+% =====================================================================
+%  RESEARCH PAPER  --  economics article skeleton
+%  Build:  latexmk -cd paper/paper-template.tex   (or the VSCode green arrow)
+%
+%  Bibliography: biblatex+biber by default. For a journal that requires
+%  bibtex/natbib, change the line below to \usepackage[natbib]{meconbib}
+%  and (optionally) \setbibstyle{aer}.  Nothing else in the file changes.
+% =====================================================================
+\documentclass[12pt]{article}
+
+\usepackage{mathprelude}
+\usepackage{setspace}
+\usepackage{meconbib}       % <-- add [natbib] here for older journals
+\bibresource{references}
+
+% --- front-matter helpers ---
+\newcommand{\keywords}[1]{\par\smallskip\noindent\textbf{Keywords:} #1}
+\newcommand{\jelcodes}[1]{\par\noindent\textbf{JEL Classification:} #1}
+
+\title{\textbf{An Informative Title About an Economic Question}%
+  \thanks{I thank seminar participants for helpful comments. All errors are my own.}}
+\author{%
+  Gavin Qu\thanks{Department of Economics; \texttt{gavinqu1@gmail.com}.}%
+}
+\date{\today \\[6pt] \small\emph{Preliminary --- please do not circulate.}}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}\noindent
+This paper studies [question]. Using [method], I show [main result]. The findings
+imply [contribution]. \keywords{matching, mechanism design, information}
+\jelcodes{C78, D47, D82}
+\end{abstract}
+
+\bigskip
+% \doublespacing   % <- uncomment for a submission draft
+
+\section{Introduction}\label{sec:intro}
+Motivation, contribution, and roadmap. This paper relates to the classic analysis
+of adverse selection by \textcite{akerlof1970}; for textbook foundations see
+\textcite{mwg1995}.
+
+\section{Model}\label{sec:model}
+\begin{assumption}\label{as:reg}
+Preferences are complete, transitive, continuous, and locally non-satiated.
+\end{assumption}
+
+\begin{proposition}\label{prop:exist}
+Under \Cref{as:reg}, a competitive equilibrium exists.
+\end{proposition}
+\begin{proof}
+See \Cref{app:proofs}.
+\end{proof}
+
+\section{Results}\label{sec:results}
+Main analysis and \Cref{prop:exist}'s implications.
+
+\section{Conclusion}\label{sec:conc}
+Summary and directions for future work.
+
+\printrefs
+
+\appendix
+\section{Proofs}\label{app:proofs}
+\begin{proof}[Proof of \Cref{prop:exist}]
+Apply a fixed-point argument to the excess-demand correspondence. \qedhere
+\end{proof}
+
+\end{document}
