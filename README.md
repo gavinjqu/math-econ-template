@@ -10,28 +10,7 @@ single option flips the bibliography between **biblatex** (modern, the default) 
 
 ---
 
-## 1. Your LaTeX setup (read this once)
-
-Your Mac has **two** TeX distributions:
-
-| Distribution | Location | On your `PATH`? | Has biblatex/exam/metropolis? |
-|---|---|---|---|
-| **TinyTeX** (minimal) | `~/Library/TinyTeX` | yes (default) | ❌ no |
-| **MacTeX 2026** (full) | `/Library/TeX/texbin` | after TinyTeX | ✅ yes |
-
-TinyTeX (used by R / Quarto) is missing several packages these templates need. So
-this repo is wired to compile with **MacTeX 2026** instead — via
-[.vscode/settings.json](.vscode/settings.json) and [latexmkrc](latexmkrc), which put
-`/Library/TeX/texbin` first on `PATH`. **You don't need to install anything**, and
-your global TinyTeX is left untouched.
-
-> Want MacTeX to be your default everywhere (not just this repo)? Open **TeX Live
-> Utility** or run `sudo tlmgr path add`, or reorder `PATH` in your shell profile.
-> Not required for this repo.
-
----
-
-## 2. Repository layout
+## 1. Repository layout
 
 ```
 math-econ-template/
@@ -56,7 +35,7 @@ The `styles/` folder is made visible to every subfolder automatically (via
 
 ---
 
-## 3. Quick start in VSCode
+## 2. Quick start in VSCode
 
 1. **Open the folder** (not just a file): `File → Open Folder…` → pick
    `math-econ-template`. *(The build settings are per-folder, so this matters.)*
@@ -72,7 +51,7 @@ That's it — the green arrow does pdfLaTeX + biber and opens the PDF.
 
 ---
 
-## 4. Building from the terminal
+## 3. Building from the terminal
 
 Run from the **repo root**, with `-cd` so output lands next to the source:
 
@@ -88,7 +67,7 @@ so this matches the VSCode build exactly.
 
 ---
 
-## 5. The document types
+## 4. The document types
 
 ### 📓 Notes — [notes/notes-template.tex](notes/notes-template.tex)
 Article with the full macro/theorem set and citations. Start a new set by copying the
@@ -124,7 +103,7 @@ grading table, "page *x* of *N*"):
 
 ---
 
-## 6. Macro cheat-sheet
+## 5. Macro cheat-sheet
 
 Defined in [styles/mathmacros.sty](styles/mathmacros.sty) and
 [styles/econ.sty](styles/econ.sty). Edit those files to add your own.
@@ -152,7 +131,7 @@ Defined in [styles/mathmacros.sty](styles/mathmacros.sty) and
 
 ---
 
-## 7. Theorem environments
+## 6. Theorem environments
 
 From [styles/theorems.sty](styles/theorems.sty). `theorem`, `lemma`, `proposition`,
 `corollary`, `claim`, `conjecture`, `fact`, `definition`, `example`, `exercise`,
@@ -168,7 +147,7 @@ By \Cref{thm:main} and \Cref{as:reg}, ...   % → "By Theorem 1 and Assumption 2
 
 ---
 
-## 8. Bibliography — and the natbib toggle
+## 7. Bibliography — and the natbib toggle
 
 Default is **biblatex + biber** (modern author–year). To satisfy an **older journal
 that requires bibtex/natbib**, change **one line** in your document's preamble:
@@ -202,7 +181,7 @@ Just rebuild after switching — latexmk automatically runs **biber** (biblatex)
 
 ---
 
-## 9. Customizing
+## 8. Customizing
 
 - **Add/edit macros:** edit [styles/mathmacros.sty](styles/mathmacros.sty) or
   [styles/econ.sty](styles/econ.sty). Every document picks up the change on the next build.
@@ -210,18 +189,6 @@ Just rebuild after switching — latexmk automatically runs **biber** (biblatex)
   (e.g. the `geometry` margin, or link colors `LinkNavy`/`CiteGreen`).
 - **New document:** copy the closest template file/folder and rename. Give notes/papers
   their own `references.bib` in the same folder (each folder already has one).
-
----
-
-## 10. Troubleshooting
-
-| Symptom | Fix |
-|---|---|
-| `LaTeX Error: File 'biblatex.sty' not found` (or `exam.cls`, `metropolis`) | You're compiling with TinyTeX. Make sure you **opened the repo folder** in VSCode so its `.vscode/settings.json` applies; in a terminal, build from the **repo root**. |
-| `File 'mathmacros.sty' not found` | Open the **repo root** as the workspace folder (so `%WORKSPACE_FOLDER%`/`TEXINPUTS` resolves), or run `latexmk` from the repo root. |
-| Citations show as `[?]` / `(author?)` | Build again — the first pass runs before biber/bibtex. LaTeX Workshop's recipe handles the extra passes automatically. |
-| Aux files cluttering a folder | `latexmk -c -cd <folder>/<file>.tex`, or just save again (auto-clean on failure is on). |
-| Metropolis looks plain | It uses default fonts under pdfLaTeX. For the signature Fira look, compile that file with LuaLaTeX + the `fira` package (optional). |
 
 ---
 
